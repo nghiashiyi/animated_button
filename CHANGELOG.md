@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] - Release first version about animated button.
 
-* TODO: Describe initial release.
+## [1.0.1] - Update package information.
+
+## [1.0.2] - Add example

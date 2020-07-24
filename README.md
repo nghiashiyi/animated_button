@@ -1,19 +1,19 @@
 # Animated Progress Button
-![Silas](silas-transinghia.png)
+![](https://teamview-server.herokuapp.com/images/silas-transinghia.png)
 
 
 Animated loading button to make you app button looks smoother.
 Take inspritation from Pinterest https://www.pinterest.com/pin/671177150707141229/
 
 
-![alt text](illustration.gif)
+![alt text](https://teamview-server.herokuapp.com/images/animated_progress_button/illustration.gif)
 
 ## Usages
 
 Create `animatedButtonController` for controlling the button.
 
 ```sh
-import 'package:...';
+import 'package:animated_progress_button/animated_progress_button.dart';
 
 final AnimatedButtonController animatedButtonController = AnimatedButtonController();
 ```
