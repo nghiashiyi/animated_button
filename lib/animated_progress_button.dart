@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class AnimatedButton extends StatefulWidget {
   const AnimatedButton(
       {Key key,
-        @required this.color,
-        @required this.text,
-        @required this.controller,
-        this.loadedIcon,
-        this.height,
-        this.loadingText,
-        this.onPressed})
+      @required this.color,
+      @required this.text,
+      @required this.controller,
+      this.loadedIcon,
+      this.height,
+      this.loadingText,
+      this.onPressed})
       : super(key: key);
 
   /// Color of the button
