@@ -1,8 +1,7 @@
 name: animated_progress_button
 description: A new Flutter package.
-version: 0.0.1
-author:
-homepage:
+version: 1.0.0
+homepage: https://www.linkedin.com/in/tran-si-nghia/
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

@@ -1,5 +1,5 @@
 # Animated Progress Button
-![Silas](https://teamview-server.herokuapp.com/images/silas-transinghia.png)
+![Silas](silas-transinghia.png)
 
 
 Animated loading button to make you app button looks smoother.
