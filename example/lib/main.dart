@@ -87,13 +87,14 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 100,right: 100),
+            padding: const EdgeInsets.only(left: 115,right: 115),
             child: AnimatedButton(
-              
+              height: 40,
               color: Colors.white,
               bordercolor: Colors.orange,
+              shadowColor: Colors.orange,
                fontcolor: Colors.black,
-              text: 'Log in',
+              text: 'Add',
                loadedIcon: Icon(Icons.check, color: Colors.black),
               controller: animatedButtonController,
               onPressed: () async {
