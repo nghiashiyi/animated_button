@@ -11,11 +11,17 @@ class AnimatedButton extends StatefulWidget {
       this.loadedIcon,
       this.height,
       this.loadingText,
+      this.bordercolor, 
+      this.fontcolor,
+      this.width,
       this.onPressed})
       : super(key: key);
 
   /// Color of the button
   final Color color;
+  final Color bordercolor;
+  final Color fontcolor;
+  final double width;
 
   /// Initial text display
   final String text;
@@ -114,7 +120,13 @@ class _AnimatedButtonState extends State<AnimatedButton>
                       color: Colors.black12,
                       blurRadius: 10.0,
                       spreadRadius: 1.0)
-                ]),
+
+
+                ],
+
+              border: Border.all(color: widget.bordercolor)
+                
+                ),
             child: Stack(
               children: <Widget>[
                 Row(
@@ -126,9 +138,9 @@ class _AnimatedButtonState extends State<AnimatedButton>
                           _progressLoadingCompleted
                               ? ""
                               : _isLoading
-                                  ? (widget.loadingText ?? 'In progress ...')
+                                  ? (widget.loadingText ?? '')
                                   : (widget.text ?? ''),
-                          style: TextStyle(color: Colors.white, fontSize: 15)),
+                          style: TextStyle(color: widget.fontcolor, fontSize: 15)),
                     ),
                   ],
                 ),
