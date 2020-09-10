@@ -82,7 +82,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         CurvedAnimation(
             parent: _animationController,
             curve: Interval(0.0, 0.7, curve: Curves.ease)));
-    _buttonWidthAnimation = Tween<double>(begin: 400, end: 40).animate(
+    _buttonWidthAnimation = Tween<double>(begin: 400, end: 30).animate(
         CurvedAnimation(
             parent: _animationController,
             curve: Interval(0.7, 0.9, curve: Curves.decelerate)));
