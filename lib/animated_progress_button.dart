@@ -82,7 +82,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         CurvedAnimation(
             parent: _animationController,
             curve: Interval(0.0, 0.7, curve: Curves.ease)));
-    _buttonWidthAnimation = Tween<double>(begin: 400, end: 35).animate(
+    _buttonWidthAnimation = Tween<double>(begin: 400, end: widget.height).animate(
         CurvedAnimation(
             parent: _animationController,
             curve: Interval(0.7, 0.9, curve: Curves.decelerate)));
@@ -99,7 +99,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height ?? 50,
+      height: widget.height,
       width: _buttonWidthAnimation.value,
      margin: EdgeInsets.only(top: 10.0, left: 28.0, right: 28.0,bottom: 10),
       child: Center(
