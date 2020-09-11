@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
           Padding(
             padding: const EdgeInsets.only(left: 115,right: 115),
             child: AnimatedButton(
-              height: 40,
+              height: 30,
               color: Colors.white,
               bordercolor: Colors.orange,
               shadowColor: Colors.orange,
