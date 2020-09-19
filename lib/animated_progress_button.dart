@@ -26,7 +26,7 @@ class AnimatedButton extends StatefulWidget {
   final Color shadowColor;
 
   /// Initial text display
-  final String text;
+  final text;
 
   /// Loading text
   final String loadingText;
@@ -143,7 +143,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                               _progressLoadingCompleted
                                   ? ""
                                   : _isLoading
-                                      ? (widget.text ?? '')
+                                      ? (widget.loadingText ?? widget.text)
                                       : (widget.text ?? ''),
                               style: TextStyle(color: widget.fontcolor, fontSize: 15)),
                         ),
