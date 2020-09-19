@@ -95,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               shadowColor: Colors.orange,
                fontcolor: Colors.black,
               text: 'Add',
+              
                loadedIcon: Icon(Icons.check, color: Colors.black),
               controller: animatedButtonController,
               onPressed: () async {

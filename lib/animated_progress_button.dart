@@ -152,18 +152,19 @@ class _AnimatedButtonState extends State<AnimatedButton>
                   ),
                   _progressLoadingCompleted
                       ? Container()
-                      : Container(
-                          height: 50,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                            child: LinearProgressIndicator(
-                              value: _progressAnimation.value,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.white.withOpacity(.5)),
-                              backgroundColor: Colors.transparent,
-                            ),
-                          ),
-                        ),
+                      : Container(),
+                      // Container(
+                      //     height: 50,
+                      //     child: ClipRRect(
+                      //       borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      //       child: LinearProgressIndicator(
+                      //         value: _progressAnimation.value,
+                      //         valueColor: AlwaysStoppedAnimation<Color>(
+                      //             Colors.white.withOpacity(.5)),
+                      //         backgroundColor: Colors.transparent,
+                      //       ),
+                      //     ),
+                      //   ),
                   Visibility(
                     visible: _visibleIcon,
                     child: SlideTransition(
