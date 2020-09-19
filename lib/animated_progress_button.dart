@@ -139,12 +139,12 @@ class _AnimatedButtonState extends State<AnimatedButton>
                         padding: const EdgeInsets.all(0.0),
                         child: Center(
                           child: Text(
-                            widget.text,
-                              // _progressLoadingCompleted
-                              //     ? ""
-                              //     : _isLoading
-                              //         ? (widget.loadingText ?? '')
-                              //         : (widget.text ?? ''),
+                          //  widget.text,
+                              _progressLoadingCompleted
+                                  ? ""
+                                  : _isLoading
+                                      ? (widget.text ?? '')
+                                      : (widget.text ?? ''),
                               style: TextStyle(color: widget.fontcolor, fontSize: 15)),
                         ),
                       ),
