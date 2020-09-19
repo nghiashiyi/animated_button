@@ -143,7 +143,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                               _progressLoadingCompleted
                                   ? ""
                                   : _isLoading
-                                      ? (widget.loadingText ?? widget.text)
+                                      ? (widget.loadingText ?? "Create")
                                       : (widget.text ?? ''),
                               style: TextStyle(color: widget.fontcolor, fontSize: 15)),
                         ),
