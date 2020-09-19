@@ -94,7 +94,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   }
 
   bool get _progressLoadingCompleted => _progressAnimation.value == 1.0;
-  bool get _visibleIcon => _checkIconOffsetAnimation.value.dy > -2;
+  bool get _visibleIcon => _checkIconOffsetAnimation.value.dy > 0;
 
   @override
   Widget build(BuildContext context) {
