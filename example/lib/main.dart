@@ -86,18 +86,27 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          AnimatedButton(
-            color: mainColor,
-            text: 'Log in',
-            controller: animatedButtonController,
-            onPressed: () async {
-              /// calling your API here and wait for the response.
-              await Future.delayed(
-                  Duration(seconds: 5)); // simulated your API request.
-              animatedButtonController.completed();
-              await Future.delayed(Duration(seconds: 2));
-              animatedButtonController.reset(); // call to reset button
-            },
+          Padding(
+            padding: const EdgeInsets.only(left: 115,right: 115),
+            child: AnimatedButton(
+              height: 30,
+              color: Colors.white,
+              bordercolor: Colors.orange,
+              shadowColor: Colors.orange,
+               fontcolor: Colors.black,
+              text: 'Add',
+              
+               loadedIcon: Icon(Icons.check, color: Colors.black),
+              controller: animatedButtonController,
+              onPressed: () async {
+                /// calling your API here and wait for the response.
+                await Future.delayed(
+                    Duration(seconds: 1)); // simulated your API request.
+                animatedButtonController.completed();
+                await Future.delayed(Duration(seconds: 2));
+                animatedButtonController.reset(); // call to reset button
+              },
+            ),
           ),
         ],
       ),

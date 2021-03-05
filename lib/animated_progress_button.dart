@@ -11,14 +11,22 @@ class AnimatedButton extends StatefulWidget {
       this.loadedIcon,
       this.height,
       this.loadingText,
+      this.bordercolor, 
+      this.fontcolor,
+      this.width,
+      this.shadowColor,
       this.onPressed})
       : super(key: key);
 
   /// Color of the button
   final Color color;
+  final Color bordercolor;
+  final Color fontcolor;
+  final double width;
+  final Color shadowColor;
 
   /// Initial text display
-  final String text;
+  final text;
 
   /// Loading text
   final String loadingText;
@@ -74,7 +82,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         CurvedAnimation(
             parent: _animationController,
             curve: Interval(0.0, 0.7, curve: Curves.ease)));
-    _buttonWidthAnimation = Tween<double>(begin: 400, end: 50).animate(
+    _buttonWidthAnimation = Tween<double>(begin: 400, end: widget.height).animate(
         CurvedAnimation(
             parent: _animationController,
             curve: Interval(0.7, 0.9, curve: Curves.decelerate)));
@@ -86,76 +94,88 @@ class _AnimatedButtonState extends State<AnimatedButton>
   }
 
   bool get _progressLoadingCompleted => _progressAnimation.value == 1.0;
-  bool get _visibleIcon => _checkIconOffsetAnimation.value.dy > -2;
+  bool get _visibleIcon => _checkIconOffsetAnimation.value.dy > 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height ?? 50,
+      height: widget.height,
       width: _buttonWidthAnimation.value,
-      margin: EdgeInsets.only(top: 32.0, left: 28.0, right: 28.0),
-      child: FlatButton(
-        padding: EdgeInsets.zero,
-        onPressed: () {
-          if (_isLoading) return;
-          _isLoading = true;
-          _animationController.forward();
-          if (widget.onPressed != null) {
-            widget.onPressed();
-          }
-        },
-        child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                color: widget.color,
-                boxShadow: [
-                  BoxShadow(
-                      offset: Offset(0, 3),
-                      color: Colors.black12,
-                      blurRadius: 10.0,
-                      spreadRadius: 1.0)
-                ]),
-            child: Stack(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                          _progressLoadingCompleted
-                              ? ""
-                              : _isLoading
-                                  ? (widget.loadingText ?? 'In progress ...')
-                                  : (widget.text ?? ''),
-                          style: TextStyle(color: Colors.white, fontSize: 15)),
-                    ),
+     margin: EdgeInsets.only(top: 10.0, left: 28.0, right: 28.0,bottom: 10),
+      child: Center(
+        child: FlatButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            if (_isLoading) return;
+            _isLoading = true;
+            _animationController.forward();
+            if (widget.onPressed != null) {
+              widget.onPressed();
+            }
+          },
+          child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  color: widget.color,
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0, 1),
+                        color: widget.shadowColor,
+                        blurRadius: 3.0,
+                        spreadRadius: 0.2)
+
+
                   ],
-                ),
-                _progressLoadingCompleted
-                    ? Container()
-                    : Container(
-                        height: 50,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                          child: LinearProgressIndicator(
-                            value: _progressAnimation.value,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.white.withOpacity(.5)),
-                            backgroundColor: Colors.transparent,
-                          ),
+
+                border: Border.all(color: widget.bordercolor)
+                  
+                  ),
+              child: Stack(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Center(
+                          child: Text(
+                          //  widget.text,
+                              _progressLoadingCompleted
+                                  ? ""
+                                  : _isLoading
+                                      ? (widget.loadingText ?? "Create")
+                                      : (widget.text ?? ''),
+                              style: TextStyle(color: widget.fontcolor, fontSize: 15)),
                         ),
                       ),
-                Visibility(
-                  visible: _visibleIcon,
-                  child: SlideTransition(
-                      position: _checkIconOffsetAnimation,
-                      child: Center(
-                          child: widget.loadedIcon ??
-                              Icon(Icons.check, color: Colors.white))),
-                )
-              ],
-            )),
+                    ],
+                  ),
+                  _progressLoadingCompleted
+                      ? Container()
+                      : Container(),
+                      // Container(
+                      //     height: 50,
+                      //     child: ClipRRect(
+                      //       borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      //       child: LinearProgressIndicator(
+                      //         value: _progressAnimation.value,
+                      //         valueColor: AlwaysStoppedAnimation<Color>(
+                      //             Colors.white.withOpacity(.5)),
+                      //         backgroundColor: Colors.transparent,
+                      //       ),
+                      //     ),
+                      //   ),
+                  Visibility(
+                    visible: _visibleIcon,
+                    child: SlideTransition(
+                        position: _checkIconOffsetAnimation,
+                        child: Center(
+                            child: widget.loadedIcon ??
+                                Icon(Icons.check, color: Colors.white))),
+                  )
+                ],
+              )),
+        ),
       ),
     );
   }
