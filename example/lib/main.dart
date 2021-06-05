@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
-        actions: <Widget>[FlatButton(onPressed: () {}, child: Text("Sign up"))],
+        actions: <Widget>[TextButton(onPressed: () {}, child: Text("Sign up"))],
       ),
       body: Column(
         children: <Widget>[
@@ -64,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Container(
+            height: 50,
             margin: EdgeInsets.only(top: 56.0, left: 28.0, right: 28.0),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -93,9 +94,9 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () async {
               /// calling your API here and wait for the response.
               await Future.delayed(
-                  Duration(seconds: 5)); // simulated your API request.
+                  Duration(seconds: 10)); // simulated your API request.
               animatedButtonController.completed();
-              await Future.delayed(Duration(seconds: 2));
+              //await Future.delayed(Duration(seconds: 2));
               animatedButtonController.reset(); // call to reset button
             },
           ),

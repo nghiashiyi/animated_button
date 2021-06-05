@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class AnimatedButton extends StatefulWidget {
   const AnimatedButton(
-      {Key key,
-      @required this.color,
-      @required this.text,
-      @required this.controller,
+      {Key? key,
+      required this.color,
+      required this.text,
+      required this.controller,
       this.loadedIcon,
       this.height,
       this.loadingText,
@@ -21,13 +21,13 @@ class AnimatedButton extends StatefulWidget {
   final String text;
 
   /// Loading text
-  final String loadingText;
+  final String? loadingText;
 
   /// You can also customized the last icon appear in the animation progress.
-  final Widget loadedIcon;
+  final Widget? loadedIcon;
 
   /// Default 50.
-  final double height;
+  final double? height;
 
   /// AnimatedButtonController to help control the animation progress.
   /// Call [controller.completed()] when getting response from your request
@@ -35,7 +35,7 @@ class AnimatedButton extends StatefulWidget {
   final AnimatedButtonController controller;
 
   /// Customize on pressing action
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -45,15 +45,15 @@ class _AnimatedButtonState extends State<AnimatedButton>
     with TickerProviderStateMixin {
   static int simulatedLoadingTime = 3;
   bool _isLoading = false;
-  AnimationController _animationController;
-  Animation<double> _progressAnimation;
-  Animation<double> _buttonWidthAnimation;
-  Animation<Offset> _checkIconOffsetAnimation;
+  late AnimationController _animationController;
+  late Animation<double> _progressAnimation;
+  late Animation<double> _buttonWidthAnimation;
+  late Animation<Offset> _checkIconOffsetAnimation;
 
   @override
   void initState() {
     super.initState();
-    widget.controller?.addLoadedListener((bool shouldReset) {
+    widget.controller.addLoadedListener((bool shouldReset) {
       if (shouldReset) {
         _animationController.reset();
         _isLoading = false;
@@ -64,8 +64,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
     _animationController = AnimationController(
         duration: Duration(seconds: simulatedLoadingTime), vsync: this)
       ..addListener(() {
-        if (_animationController.value >= 0.6 &&
-            !(widget.controller?.value ?? true)) {
+        if (_animationController.value >= 0.6 && (widget.controller.value)) {
           _animationController.stop(canceled: false);
         }
         setState(() {});
@@ -94,14 +93,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
       height: widget.height ?? 50,
       width: _buttonWidthAnimation.value,
       margin: EdgeInsets.only(top: 32.0, left: 28.0, right: 28.0),
-      child: FlatButton(
-        padding: EdgeInsets.zero,
+      child: TextButton(
+        style: TextButton.styleFrom(padding: EdgeInsets.zero),
         onPressed: () {
           if (_isLoading) return;
           _isLoading = true;
           _animationController.forward();
           if (widget.onPressed != null) {
-            widget.onPressed();
+            widget.onPressed!();
           }
         },
         child: Container(
@@ -127,7 +126,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                               ? ""
                               : _isLoading
                                   ? (widget.loadingText ?? 'In progress ...')
-                                  : (widget.text ?? ''),
+                                  : (widget.text),
                           style: TextStyle(color: Colors.white, fontSize: 15)),
                     ),
                   ],
@@ -164,14 +163,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
 typedef void OnLoaded(bool shouldReset);
 
 class AnimatedButtonController extends ValueNotifier<bool> {
-  OnLoaded _callback;
+  OnLoaded? _callback;
 
   AnimatedButtonController({bool value = false}) : super(value);
 
   void completed() {
     value = true;
     if (_callback != null) {
-      _callback(false);
+      _callback!(false);
     }
   }
 
@@ -182,7 +181,7 @@ class AnimatedButtonController extends ValueNotifier<bool> {
   void reset() {
     value = false;
     if (_callback != null) {
-      _callback(true);
+      _callback!(true);
     }
   }
 }
